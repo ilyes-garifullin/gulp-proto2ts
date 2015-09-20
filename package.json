@@ -1,0 +1,29 @@
+{
+  "name": "gulp-proto2ts",
+  "version": "1.0.0",
+  "description": "TypeScript definitions from Protocol Buffers models generator for gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilyes-garifullin/gulp-proto2ts.git"
+  },
+  "keywords": [
+    "Protobuf",
+    "TypeScript",
+    "Gulp"
+  ],
+  "author": "ilyes garifullin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilyes-garifullin/gulp-proto2ts/issues"
+  },
+  "homepage": "https://github.com/ilyes-garifullin/gulp-proto2ts#readme",
+  "dependencies": {
+    "gulp-util": "^3.0.6",
+    "proto2ts": "git+https://github.com/ilyes-garifullin/proto2ts.git",
+    "through2": "^2.0.0"
+  }
+}
