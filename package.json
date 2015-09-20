@@ -23,7 +23,8 @@
   "homepage": "https://github.com/ilyes-garifullin/gulp-proto2ts#readme",
   "dependencies": {
     "gulp-util": "^3.0.6",
-    "proto2ts": "git+https://github.com/ilyes-garifullin/proto2ts.git",
+    "protoJson2ts": "git+https://github.com/ilyes-garifullin/protoJson2ts.git",
+    "protobufjs": "^4.0.0",
     "through2": "^2.0.0"
   }
 }
