@@ -1,10 +1,10 @@
-var through = reqire('through2')
+var through = require('through2')
 var pbjsJsonTraget = require('./node_modules/protobufjs/cli/pbjs/targets/json')
 var ProtoBuf = require('protobufjs')
-var protoJson2ts = reqire('protoJson2ts')
-var gutil = require('gulp-util');
-var PluginError = gutil.PluginError;
-var File = gutil.File;
+var protoJson2ts = require('protoJson2ts')
+var gutil = require('gulp-util')
+var PluginError = gutil.PluginError
+var File = gutil.File
 
 var PLUGIN_NAME = 'gulp-proto2ts'
 
@@ -17,12 +17,10 @@ module.exports = function() {
 
 function onFile(file, enc, callback) {
     if (file.isNull()) {
-        this.push(file);
       return callback();
     }
-
     if (file.isBuffer()) {
-        protos.push({content: file.content, path: file.path});
+        protos.push({content: file._contents.toString('utf8'), path: file.path});
         return callback();
     }
 
@@ -35,17 +33,18 @@ function onFile(file, enc, callback) {
 function onEnd(callback){
 
     var json = proto2json();
-    var ts = protoJson2ts(json);
+    var _this = this;
+    protoJson2ts(json, function(ts){
+        var file = new File({
+          cwd: "/",
+          base: "/",
+          path: "/protoTypings.d.ts",
+          contents: new Buffer(ts)
+        });
+        _this.push(file);
 
-    var file = new File({
-      cwd: "/",
-      base: "/",
-      path: "/protoTypings.d.ts",
-      contents: new Buffer(ts)
+        callback();
     });
-    this.push(file);
-
-    callback();
 }
 
 function proto2json(){
@@ -53,7 +52,9 @@ function proto2json(){
     var builder = ProtoBuf.newBuilder();
 
     protos.forEach(function(proto) {
-        builder.import(proto.content, proto.path);
+        var parser = new ProtoBuf.DotProto.Parser(proto.content);
+        var data = parser.parse();
+        builder.import(data, proto.path);
     });
     builder.resolveAll();
 
