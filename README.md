@@ -11,11 +11,11 @@ npm install https://github.com/ilyes-garifullin/gulp-proto2ts.git -save-dev
 var gulp = require('gulp');
 var proto2ts = require('gulp-proto2ts')
 
-gulp.task('build-proto, buildProto)
+gulp.task('build-proto', buildProto)
 
 function buildProto(){
 	return gulp.src('source/proto/**/*.proto')
 		.pipe(proto2ts())
-		.pipe(gulp.dest('.temp/typings'))
+		.pipe(gulp.dest('.temp/typings/proto'))
 }
 ```
