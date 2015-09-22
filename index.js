@@ -32,9 +32,15 @@ function onFile(file, enc, callback) {
 
 function onEnd(callback){
 
-    var json = proto2json();
+    var jsonStr = proto2json();
     var _this = this;
-    protoJson2ts(json, function(ts){
+    protoJson2ts(jsonStr, function(ts, json){
+        ts += '/n'
+        ts += 'module ' + json.module + ' {'
+        ts += 'var protoJson = ' + jsonStr; 
+        ts += 'var builder:ProtoBufBuilder = ProtoBuf.loadJson(protoJson)'; 
+        ts += '/n}'
+
         var file = new File({
           cwd: "/",
           base: "/",
