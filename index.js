@@ -70,16 +70,13 @@ function proto2json(){
 }
 
 function findPbjsJsonTragetPath() {
-    var pbjsJsonTargetPath = 'cli/pbjs/targets/json'
-    var prptpbufjsPath = './node_modules/protobufjs/'
-    var stats = fs.lstatSync(prptpbufjsPath)
-    if(stats.isFile())
-        return prptpbufjsPath + pbjsJsonTargetPath;
+    var prptpbufjsPath = path.join(__dirname, './node_modules/protobufjs/');
+    if(fs.existsSync(prptpbufjsPath))
+        return './node_modules/protobufjs/cli/pbjs/targets/json';
 
-    prptpbufjsPath = '../protobufjs/'
-    stats = fs.lstatSync(prptpbufjsPath)
-    if(stats.isFile())
-        return prptpbufjsPath + pbjsJsonTargetPath;
-
-    return 'protobufjs not found'
+    prptpbufjsPath = path.join(__dirname, '../protobufjs/');
+    if(fs.existsSync(prptpbufjsPath))
+        return '../protobufjs/cli/pbjs/targets/json';
+    
+    throw new Error('protobufjs not found') 
 }
