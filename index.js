@@ -1,10 +1,10 @@
 var through = require('through2')
-var pbjsJsonTragetPath = findPbjsJsonTragetPath()
-var pbjsJsonTraget = require(pbjsJsonTragetPath)
+var fs = require('fs')
+var gutil = require('gulp-util')
 var ProtoBuf = require('protobufjs')
 var protoJson2ts = require('protoJson2ts')
-var gutil = require('gulp-util')
-var fs = require('fs')
+var pbjsJsonTragetPath = findPbjsJsonTragetPath()
+var pbjsJsonTraget = require(pbjsJsonTragetPath)
 var PluginError = gutil.PluginError
 var File = gutil.File
 
