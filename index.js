@@ -37,11 +37,10 @@ function onEnd(callback){
     var jsonStr = proto2json();
     var _this = this;
     protoJson2ts(jsonStr, function(ts, json){
-        ts += '/n'
-        ts += 'module ' + json.module + ' {'
-        ts += 'var protoJson = ' + jsonStr; 
-        ts += 'var builder:ProtoBufBuilder = ProtoBuf.loadJson(protoJson)'; 
-        ts += '/n}'
+        ts += '\nmodule ' + json.module + ' {'
+        ts += '\nvar protoJson = ' + jsonStr; 
+        ts += '\nvar builder:ProtoBufBuilder = ProtoBuf.loadJson(protoJson)'; 
+        ts += '\n}'
 
         var file = new File({
           cwd: "/",
