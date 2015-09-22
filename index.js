@@ -1,8 +1,10 @@
 var through = require('through2')
-var pbjsJsonTraget = require('./node_modules/protobufjs/cli/pbjs/targets/json')
+var pbjsJsonTragetPath = findPbjsJsonTragetPath()
+var pbjsJsonTraget = require(pbjsJsonTragetPath)
 var ProtoBuf = require('protobufjs')
 var protoJson2ts = require('protoJson2ts')
 var gutil = require('gulp-util')
+var fs = require('fs')
 var PluginError = gutil.PluginError
 var File = gutil.File
 
@@ -65,4 +67,19 @@ function proto2json(){
     builder.resolveAll();
 
     return pbjsJsonTraget(builder);
+}
+
+function findPbjsJsonTragetPath() {
+    var pbjsJsonTargetPath = 'cli/pbjs/targets/json'
+    var prptpbufjsPath = './node_modules/protobufjs/'
+    var stats = fs.lstatSync(prptpbufjsPath)
+    if(stats.isFile())
+        return prptpbufjsPath + pbjsJsonTargetPath;
+
+    prptpbufjsPath = '../protobufjs/'
+    stats = fs.lstatSync(prptpbufjsPath)
+    if(stats.isFile())
+        return prptpbufjsPath + pbjsJsonTargetPath;
+
+    return 'protobufjs not found'
 }
