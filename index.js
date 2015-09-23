@@ -1,5 +1,6 @@
 var through = require('through2')
 var fs = require('fs')
+var path = require('path')
 var gutil = require('gulp-util')
 var ProtoBuf = require('protobufjs')
 var protoJson2ts = require('protoJson2ts')
