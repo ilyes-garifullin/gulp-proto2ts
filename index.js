@@ -39,8 +39,9 @@ function onEnd(callback){
     var _this = this;
     protoJson2ts(jsonStr, function(ts, json){
         ts += '\nmodule ' + json.package + ' {'
-        ts += '\nvar protoJson = ' + jsonStr; 
-        ts += '\nvar builder:ProtoBufBuilder = ProtoBuf.loadJson(protoJson)'; 
+        ts += '\nexport class ProtoLocator {'; 
+        ts += '\nstatic factory:ProtoFactory = ProtoBuf.loadJson(' + jsonStr + ')'; 
+        ts += '\n}'
         ts += '\n}'
 
         var file = new File({
