@@ -38,7 +38,7 @@ function onEnd(callback){
     var jsonStr = proto2json();
     var _this = this;
     protoJson2ts(jsonStr, function(ts, json){
-        ts += '\nmodule ' + json.module + ' {'
+        ts += '\nmodule ' + json.package + ' {'
         ts += '\nvar protoJson = ' + jsonStr; 
         ts += '\nvar builder:ProtoBufBuilder = ProtoBuf.loadJson(protoJson)'; 
         ts += '\n}'
