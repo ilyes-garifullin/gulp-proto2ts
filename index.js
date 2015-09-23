@@ -46,7 +46,7 @@ function onEnd(callback){
         var file = new File({
           cwd: "/",
           base: "/",
-          path: "/protoTypings.d.ts",
+          path: "/proto.ts",
           contents: new Buffer(ts)
         });
         _this.push(file);
