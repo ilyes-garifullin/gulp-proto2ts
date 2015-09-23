@@ -40,7 +40,7 @@ function onEnd(callback){
     protoJson2ts(jsonStr, function(ts, json){
         ts += '\nmodule ' + json.package + ' {'
         ts += '\nexport class ProtoLocator {'; 
-        ts += '\nstatic factory:ProtoBufBuilder = ProtoBuf.loadJson(JSON.stringify(' + jsonStr + ')'; 
+        ts += '\nstatic factory:ProtoBufBuilder = ProtoBuf.loadJson(JSON.stringify(' + jsonStr + ').build("' + json.package + '")'; 
         ts += '\n}'
         ts += '\n}'
 
