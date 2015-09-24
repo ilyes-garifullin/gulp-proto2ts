@@ -38,8 +38,8 @@ function onEnd(callback){
     var jsonStr = proto2json();
     var _this = this;
     protoJson2ts(jsonStr, function(ts, json){
-        ts += '\nmodule ' + json.package + ' {'
         ts += '\nimport ProtoBuf = require("protobufjs");'; 
+        ts += '\nmodule ' + json.package + ' {'
         ts += '\nexport class ProtoLocator {'; 
         ts += '\nstatic factory:ProtoBufBuilder = ProtoBuf.loadJson(JSON.stringify(' + jsonStr + ')).build("' + json.package + '")'; 
         ts += '\n}'
