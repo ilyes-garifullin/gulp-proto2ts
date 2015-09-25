@@ -2,7 +2,7 @@ var through = require('through2')
 var fs = require('fs')
 var path = require('path')
 var gutil = require('gulp-util')
-var ProtoBuf = require('protobufjs')
+var protobufjs = require('protobufjs')
 var protoJson2ts = require('protoJson2ts')
 var pbjsJsonTragetPath = findPbjsJsonTragetPath()
 var pbjsJsonTraget = require(pbjsJsonTragetPath)
@@ -57,10 +57,10 @@ function onEnd(callback){
 
 function proto2json(){
     
-    var builder = ProtoBuf.newBuilder();
+    var builder = protobufjs.newBuilder();
 
     protos.forEach(function(proto) {
-        var parser = new ProtoBuf.DotProto.Parser(proto.content);
+        var parser = new protobufjs.DotProto.Parser(proto.content);
         var data = parser.parse();
         builder.import(data, proto.path);
     });
