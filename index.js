@@ -40,7 +40,7 @@ function onEnd(callback){
     protoJson2ts(jsonStr, function(ts, json){
         ts += '\nexport class ProtoLocator {'; 
         ts += '\nprivate static builder:protobuf.ProtoBuilder = protobuf.loadJson(JSON.stringify(' + jsonStr + '));';
-        ts += '\nstatic factory:ProtoBufBuilder = (<ProtoBufBuilder>ProtoLocator.builder.build());'; 
+        ts += '\nstatic factory:ProtoPackageBuilder = (<ProtoPackageBuilder>ProtoLocator.builder.build());'; 
         ts += '\n}'
 
         var file = new File({
