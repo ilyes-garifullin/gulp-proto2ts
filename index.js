@@ -13,7 +13,11 @@ var PLUGIN_NAME = 'gulp-proto2ts'
 
 var protos;
 
-module.exports = function() {
+var fileName;
+
+module.exports = function(options) {
+    options = options || {};
+    fileName = options.fileName || 'proto.ts';
     protos = [];
     return through.obj(onFile, onEnd)
 }
@@ -42,7 +46,7 @@ function onEnd(callback){
         var file = new File({
           cwd: "/",
           base: "/",
-          path: "/proto.ts",
+          path: "/" + fileName,
           contents: new Buffer(ts)
         });
         _this.push(file);
